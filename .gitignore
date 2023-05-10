@@ -1,0 +1,31 @@
+# Environments
+.env
+.env.local
+
+# Docker
+docker-compose.override.yml
+
+# Backups
+backups/
+*.sql
+*.tar.gz
+
+# Local volumes data (in case they are accidentally created locally)
+volumes/
+mysql_data/
+postgres_data/
+pgadmin_data/
+minio_data/
+npm_data/
+npm_letsencrypt/
+redis_data/
+portainer_data/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
