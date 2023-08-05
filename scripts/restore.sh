@@ -46,4 +46,14 @@ else
     echo "❌ PostgreSQL backup $PG_FILE not found."
 fi
 
+# 3. Restore MongoDB
+MONGO_FILE="$BACKUP_DIR/mongo_full_$TIMESTAMP.archive.gz"
+if [ -f "$MONGO_FILE" ]; then
+    echo "📥 Restoring MongoDB from $MONGO_FILE..."
+    zcat "$MONGO_FILE" | docker exec -i mongo mongorestore --username="${MONGO_INITDB_ROOT_USERNAME}" --password="${MONGO_INITDB_ROOT_PASSWORD}" --authenticationDatabase=admin --archive
+    echo "✅ MongoDB restored."
+else
+    echo "❌ MongoDB backup $MONGO_FILE not found."
+fi
+
 echo "🎉 Restore process completed."

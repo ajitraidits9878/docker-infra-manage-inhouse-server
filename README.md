@@ -13,9 +13,15 @@ A production-ready, one-command Docker stack showcasing a comprehensive suite of
 | **phpMyAdmin** | UI | `8082` | Web interface for MySQL administration |
 | **PostgreSQL 16**| DB | `5432` (internal) | Advanced open-source relational database |
 | **pgAdmin 4** | UI | `8083` | Web interface for PostgreSQL administration |
+| **MongoDB** | DB | `27017` (internal)| High-performance NoSQL database |
+| **Mongo-Express** | UI | `8081` | Web interface for MongoDB administration |
 | **Redis** | Cache | `6379` (internal) | In-memory data structure store / cache |
 | **MinIO** | UI / API | `9001` / `9000` | High-performance, S3-compatible object storage |
+| **ELK Stack** | Logs / UI | `5601` / `9200` | Elasticsearch, Logstash, Kibana centralized logging |
+| **Netdata** | UI | `19999` | Real-time performance and health monitoring |
+| **RabbitMQ** | Queue / UI| `5672` / `15672` | Industry-standard message broker |
 | **FreeRADIUS** | Auth | `1812`/`1813` (UDP) | High-performance RADIUS server |
+| **Uptime Kuma** | UI | `3001` | Self-hosted monitoring tool |
 | **Watchtower** | Background| - | Automated Docker container base image updates |
 
 ## 🛠️ Prerequisites
@@ -67,6 +73,9 @@ docker compose up -d
 * **pgAdmin:** `admin@example.com` / `super_secret_pgadmin_password`
 * **MinIO:** `admin` / `super_secret_minio_password`
 * **Dozzle:** `admin` / `super_secret_dozzle_password`
+* **Mongo-Express:** `admin` / `super_secret_mongo_express`
+* **RabbitMQ:** `admin` / `super_secret_rabbitmq_password`
+* **ELK (Elasticsearch/Kibana):** Setup required; `elastic` / `super_secret_elastic_password`
 
 ## 📁 Project Structure
 
@@ -89,9 +98,9 @@ docker compose up -d
 
 ## 💾 Backups and Maintenance
 
-Two scripts are provided in the `scripts/` directory to help manage your relational databases:
+Two scripts are provided in the `scripts/` directory to help manage your databases:
 
-* **Backup:** Run `./scripts/backup.sh` to generate SQL dumps of both MySQL and PostgreSQL databases to a local `backups/` folder.
+* **Backup:** Run `./scripts/backup.sh` to generate SQL/archive dumps of MySQL, PostgreSQL, and MongoDB to a local `backups/` folder.
 * **Restore:** Run `./scripts/restore.sh <backup_date>` to restore the databases from a specific backup timestamp.
 
 ## 🛑 Stopping the Stack

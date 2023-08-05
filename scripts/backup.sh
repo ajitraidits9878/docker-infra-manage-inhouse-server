@@ -27,5 +27,10 @@ echo "📦 Backing up PostgreSQL..."
 docker exec postgres pg_dumpall -U "${POSTGRES_USER}" > "$BACKUP_DIR/postgres_full_$DATE.sql"
 gzip "$BACKUP_DIR/postgres_full_$DATE.sql"
 
+# 3. Backup MongoDB
+echo "📦 Backing up MongoDB..."
+docker exec mongo mongodump --username="${MONGO_INITDB_ROOT_USERNAME}" --password="${MONGO_INITDB_ROOT_PASSWORD}" --authenticationDatabase=admin --archive > "$BACKUP_DIR/mongo_full_$DATE.archive"
+gzip "$BACKUP_DIR/mongo_full_$DATE.archive"
+
 echo "✅ Backups completed and saved in $BACKUP_DIR"
 ls -lh "$BACKUP_DIR"
